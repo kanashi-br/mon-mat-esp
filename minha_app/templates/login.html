@@ -1,0 +1,29 @@
+{% extends "layouts/base-simples.html" %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card-group d-block d-md-flex">
+                <div class="card p-4 mb-0" style="width: max(100%, 400px);">
+                    <div class="card-body">
+                        <h1>Login</h1>
+                        <p class="text-medium-emphasis">Fazer login com o SUAP.</p>
+                        <p>Ao clicar em "Entrar", você será redirecionado(a) para o SUAP, onde poderá ver os dados que
+                            nos serão fornecidos.</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <a class="btn btn-success px-4"
+                                    href="{% url 'social:begin' 'suap' %}">Entrar</a>
+                            </div>
+                            <div class="col-6 text-end">
+                                <button class="btn btn-link px-0" type="button">Forgot password?</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
