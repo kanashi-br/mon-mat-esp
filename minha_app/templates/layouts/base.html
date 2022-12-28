@@ -62,12 +62,14 @@
         </div>
         <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
             <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">
-                <i class="bi bi-house me-2"></i> <span>Home</span></a>
+                <i class="bi bi-house me-2"></i> <span>Início</span></a>
             </li>
             <li class="nav-item"><a class="nav-link" href="{% url 'materials.index' %}">
                 <i class="bi bi-archive me-2"></i> <span>Materiais</span></a>
             </li>
-
+            <li class="nav-item"><a class="nav-link" href="{% url 'loans.index' %}">
+                <i class="bi bi-upload me-2"></i> <span>Empréstimos</span></a>
+            </li>
         </ul>
         <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"><i class="bi bi-list"></i></button>
     </div>
@@ -80,8 +82,9 @@
                 </button><a class="header-brand d-md-none" href="#">
                     LOGO</a>
                 <ul class="header-nav d-none d-md-flex me-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Início</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'materials.index' %}">Materiais</a></li>                    
+                    <li class="nav-item"><a class="nav-link" href="{% url 'loans.index' %}">Empréstimos</a></li>                    
                 </ul>                
                 <ul class="header-nav ms-3">
                     <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#"
@@ -91,7 +94,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end pt-0">
                             <div class="dropdown-header bg-light py-2">
-                                <div class="fw-semibold">Settings</div>
+                                <div class="fw-semibold">Config.</div>
                                 <a class="dropdown-item" href="{% url 'logout' %}?next=/">
                                     <i class="bi bi-box-arrow-right"></i> Sair</a>
                             </div>

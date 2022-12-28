@@ -25,7 +25,7 @@ SECRET_KEY = '7ut%ec)q5d-0mjc2^9pb8h!xo&8r7_0kc96^9x^-^9aueiotua'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -52,6 +52,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+
 ]
 
 ROOT_URLCONF = 'mon_mat_esp.urls'
@@ -140,3 +142,4 @@ except ImportError:
 
 
 LOGIN_REDIRECT_URL = '/home/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = 'error-page' # Inutilizado temporariamente

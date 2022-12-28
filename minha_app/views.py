@@ -4,8 +4,10 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .models import Material
-from .forms import MaterialForm
+from .models import Material, Loan
+from .forms import MaterialForm, LoanForm
+
+from django.views.generic.base import TemplateView
 
 def index(request):
     if request.user.is_authenticated:
@@ -42,3 +44,33 @@ def deleteMaterials(request, pk):
     material = Material.objects.get(pk=pk)
     material.delete()
     return redirect('materials.index')
+
+def indexLoans(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/')
+    loans = Loan.objects.all()
+    return render(request, 'loans/index.html', { 'loans': loans })
+
+def createLoans(request):
+    form = LoanForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('loans.index')
+    return render(request,'loans/create.html', {'form':form})
+
+def editLoans(request, pk):
+    loan = Loan.objects.get(pk=pk)
+    form = LoanForm(request.POST or None, instance=loan)
+    if form.is_valid():
+        form.save()
+        return redirect('loans.index')
+    return render(request,'loans/edit.html', {'form':form, 'loan': loan})
+
+def deleteLoans(request, pk):
+    loan = Loan.objects.get(pk=pk)
+    loan.delete()
+    return redirect('loans.index')
+
+
+class ErrorPage(TemplateView):
+    template_name = 'error.html'
