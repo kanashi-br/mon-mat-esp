@@ -14,10 +14,11 @@ class MaterialForm(forms.ModelForm):
 class LoanForm(forms.ModelForm):
     class Meta:
         model = Loan
-        fields = ['beneficiary', 'material', 'responsible']
+        fields = ['beneficiary', 'material', 'loaned_date', 'returned', 'returned_date']
         labels = {
             'beneficiary': _('Beneficiado'),
             'material': _('Material'),
-            'responsible': _('Responsável'),
-            
+            'loaned_date': _('Data do empréstimo'),
+            'returned': _('Devolvido?'),
+            'returned_date': _('Data de devolução')
         }

@@ -54,6 +54,7 @@ def indexLoans(request):
 def createLoans(request):
     form = LoanForm(request.POST or None)
     if form.is_valid():
+        form.instance.responsible = request.user.get_full_name() + ' (' + request.user.username + ')'
         form.save()
         return redirect('loans.index')
     return render(request,'loans/create.html', {'form':form})
@@ -70,7 +71,6 @@ def deleteLoans(request, pk):
     loan = Loan.objects.get(pk=pk)
     loan.delete()
     return redirect('loans.index')
-
 
 class ErrorPage(TemplateView):
     template_name = 'error.html'

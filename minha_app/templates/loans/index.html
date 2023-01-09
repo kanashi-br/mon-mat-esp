@@ -15,6 +15,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Beneficiado</th>
                 <th scope="col">Material</th>
+                <th scope="col">Devolvido?</th>
                 <th scope="col">Responsável</th>
                 <th scope="col">Ação</th>
             </tr>
@@ -25,6 +26,13 @@
                 <th scope="row">{{ loan.id }}</th>
                 <td>{{ loan.beneficiary }}</td>
                 <td>{{ loan.material }}</td>
+                <td>
+                    {% if loan.returned %}
+                    Sim
+                    {% else %}
+                    Não
+                    {% endif %}
+                </td>
                 <td>{{ loan.responsible }}</td>
                 <td><a class="btn btn-sm btn-primary" href="{% url 'loans.edit' loan.id %}"><i class="bi bi-pencil"></i></a><a class="btn btn-sm btn-primary ms-1" href="{% url 'loans.delete' loan.id %}"><i class="bi bi-trash"></i></a></td>
             </tr>
