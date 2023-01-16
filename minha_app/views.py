@@ -78,5 +78,12 @@ def deleteLoans(request, pk):
     loan.delete()
     return redirect('loans.index')
 
+def historyLoansByUser(request, beneficiary):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect('/')
+    loans = Loan.objects.filter(beneficiary=beneficiary)
+
+    return render(request, 'loans/history_by_user.html', { 'loans': loans, 'beneficiary': beneficiary })
+
 class ErrorPage(TemplateView):
     template_name = 'error.html'

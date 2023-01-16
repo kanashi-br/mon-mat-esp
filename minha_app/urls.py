@@ -15,6 +15,7 @@ urlpatterns = [
     path('emprestimos/c/', views.createLoans, name='loans.create'),
     path('emprestimos/e/<int:pk>/', views.editLoans, name='loans.edit'),
     path('emprestimos/d/<int:pk>/', views.deleteLoans, name='loans.delete'),
+    path('emprestimos/<str:beneficiary>', views.historyLoansByUser, name='loans.history_by_user'),
     
     path(r'^error_page/$', ErrorPage.as_view(), name="error-page"),
 
