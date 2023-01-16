@@ -5,6 +5,7 @@ from datetime import datetime
 class Material(models.Model):
     name = models.CharField(max_length=300)
     qnt = models.IntegerField()
+    qnt_available = models.IntegerField()
     def __str__(self):
         return self.name
 
@@ -14,5 +15,5 @@ class Loan(models.Model):
     responsible = models.CharField(max_length=300)    
     loaned_date = models.DateTimeField(default=datetime.now, blank=True)
     returned = models.BooleanField(default=False)
-    returned_date = models.DateTimeField(default='1800-01-01')
+    returned_date = models.DateTimeField(blank=True, null=True)
     

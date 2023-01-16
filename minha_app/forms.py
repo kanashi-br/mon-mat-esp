@@ -22,3 +22,15 @@ class LoanForm(forms.ModelForm):
             'returned': _('Devolvido?'),
             'returned_date': _('Data de devolução')
         }
+        widgets = {
+            'loaned_date': forms.DateInput(
+                attrs={
+                    'autocomplete': 'off'
+                },
+            ),
+            'returned_date': forms.DateInput(
+                attrs={
+                    'autocomplete': 'off'
+                },
+            )
+        }

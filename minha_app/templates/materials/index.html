@@ -15,6 +15,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Quantidade</th>
+                <th scope="col">Quantidade disponível</th>
                 <th scope="col">Ação</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <th scope="row">{{ material.id }}</th>
                 <td>{{ material.name }}</td>
                 <td>{{ material.qnt }}</td>
+                <td>{{ material.qnt_available }}</td>
                 <td><a class="btn btn-sm btn-primary" href="{% url 'materials.edit' material.id %}"><i class="bi bi-pencil"></i></a><a class="btn btn-sm btn-primary ms-1" href="{% url 'materials.delete' material.id %}"><i class="bi bi-trash"></i></a></td>
             </tr>
             {% endfor %}

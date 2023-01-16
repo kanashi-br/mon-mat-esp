@@ -28,6 +28,7 @@ def indexMaterials(request):
 def createMaterials(request):
     form = MaterialForm(request.POST or None)
     if form.is_valid():
+        form.instance.qnt_available = form.cleaned_data['qnt']
         form.save()
         return redirect('materials.index')
     return render(request,'materials/create.html', {'form':form})
@@ -55,7 +56,9 @@ def createLoans(request):
     form = LoanForm(request.POST or None)
     if form.is_valid():
         form.instance.responsible = request.user.get_full_name() + ' (' + request.user.username + ')'
-        form.save()
+        material = Material.objects.get(pk=form.cleaned_data['material'].pk)
+        if material.qnt_available > 0:
+            form.save()
         return redirect('loans.index')
     return render(request,'loans/create.html', {'form':form})
 
@@ -63,12 +66,15 @@ def editLoans(request, pk):
     loan = Loan.objects.get(pk=pk)
     form = LoanForm(request.POST or None, instance=loan)
     if form.is_valid():
-        form.save()
+        form.instance.responsible = request.user.get_full_name() + ' (' + request.user.username + ')'
+        material = Material.objects.get(pk=form.cleaned_data['material'].pk)
+        if (material.qnt_available == 0 and form.cleaned_data['returned']) or material.qnt_available > 0:
+            form.save()
         return redirect('loans.index')
     return render(request,'loans/edit.html', {'form':form, 'loan': loan})
 
 def deleteLoans(request, pk):
-    loan = Loan.objects.get(pk=pk)
+    loan = Loan.objects.get(pk=pk)    
     loan.delete()
     return redirect('loans.index')
 
